@@ -142,9 +142,10 @@ rules: {
     'no-unused-vars': ['warn'],
 },
 
+```
+
 <br />
 
-```
 `.eslintignore`
 ```jsx
 // 過濾掉ESLint不需檢查的資料夾或檔案
