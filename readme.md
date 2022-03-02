@@ -43,7 +43,7 @@ yarn-error.log*
 ```jsx
 `npm install webpack webpack-cli --save-dev`
 ```
-<br />
+&nbsp;
 `webpack.config.js`
 ```jsx
 // 新增一個檔案，檔名叫 webpack.config.js
@@ -56,7 +56,7 @@ module.exports = {
   }
 };
 ```
-<br />
+&nbsp;
 `package.json`
 ```jsx
 {
