@@ -2,6 +2,7 @@ const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
+  mode: 'development',
   entry: './src/index.jsx',
   output: {
     filename: 'bundle.js',
@@ -41,5 +42,12 @@ module.exports = {
         ],
       },
     ],
+  },
+  devServer: {
+    static: {
+      directory: path.join(__dirname, './dist'),
+    },
+    compress: true,
+    port: 8080,
   },
 }
