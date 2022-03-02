@@ -9,14 +9,12 @@ based on Clark(#ms314006)'s article & published book
 
 ## 環境設定
 ### day0 : npm & git
-    1. 安裝node環境 + git
-    2. 終端機指令
-```jsx
-// 直接預設
-`npm init -y`
-`git init`
-```
-    3. git 加入 .gitignore(CRA裡的預設)
+1. 安裝node環境 + git
+2. 終端機指令
+    `npm init -y`
+    `git init`
+3. git 加入 .gitignore(CRA裡的預設)
+
 ```
 # dependencies
 /node_modules
@@ -46,9 +44,9 @@ yarn-error.log*
 `npm install webpack webpack-cli --save-dev`
 ```
 
+`webpack.config.js`
 ```jsx
 // 新增一個檔案，檔名叫 webpack.config.js
-`webpack.config.js`
 const path = require('path');
 module.exports = {
   entry: './src/index.js',
@@ -59,20 +57,16 @@ module.exports = {
 };
 ```
 
-```jsx
 `package.json`
-
+```jsx
 {
   "scripts": {
     "build": "webpack --mode development"
   },
-
 }
-
 // 終端機指令
 `npm run build`
 ```
-
 ### day2 : ESLint
 ```jsx
 // 終端機安裝
