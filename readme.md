@@ -39,11 +39,11 @@ yarn-debug.log*
 yarn-error.log*
 ```
 ### day1 : Webpack
+`終端機安裝`
 ```jsx
-// 終端機安裝
 `npm install webpack webpack-cli --save-dev`
 ```
-
+<br />
 `webpack.config.js`
 ```jsx
 // 新增一個檔案，檔名叫 webpack.config.js
@@ -56,7 +56,7 @@ module.exports = {
   }
 };
 ```
-
+<br />
 `package.json`
 ```jsx
 {
