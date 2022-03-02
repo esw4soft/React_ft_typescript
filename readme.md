@@ -72,14 +72,15 @@ module.exports = {
 `npm run build`
 ```
 ### day2 : ESLint
+`終端機安裝`
 ```jsx
-// 終端機安裝
 `npm install eslint --save-dev`
 ```
 
-```jsx
-`package.json`
+<br />
 
+`package.json`
+```jsx
 "scripts": {
   "build": "webpack --mode development",
   "eslintInit": "eslint --init"
@@ -89,11 +90,12 @@ module.exports = {
 `npm run eslintInit`
 ```
 
+<br />
+
+`package.json`
 ```jsx
 // 可使用vscode擴充元件ESLint 或是npm指令 做檢查
-
 //1-1.npm指令
-`package.json`
 
 "scripts": {
   "build": "webpack --mode development",
@@ -106,11 +108,12 @@ module.exports = {
 // 2-1 安裝擴充元件ESLint
 ```
 
+<br />
+
+`.eslintrc.js`
 ```jsx
 // rule 設定 
 // 可以加入自己習慣的設定
-
-`.eslintrc.js`
 rules: {
     // 將關於分號的檢查關掉
     semi: ["off"],
@@ -139,19 +142,21 @@ rules: {
     'no-unused-vars': ['warn'],
 },
 
-// 過濾掉ESLint不需檢查的資料夾或檔案
+<br />
+
+```
 `.eslintignore`
+```jsx
+// 過濾掉ESLint不需檢查的資料夾或檔案
 build/
 node_modules/
 src/serviceWorker.js
 dist/
-
 ```
 
 ### day3 : 加入 Babel 編譯JSX
+`終端機安裝`
 ```jsx
-// 終端機安裝
-
 // eslint關聯
 `npm install @babel/runtime --save-dev`
 
@@ -165,9 +170,10 @@ dist/
 `npm install babel-loader --save-dev`
 ```
 
-```jsx
-`webpack.config.js`
+<br />
 
+`webpack.config.js`
+```jsx
 const path = require('path');
 module.exports = {
   /* 其餘省略 */
@@ -187,17 +193,20 @@ module.exports = {
 };
 ```
 
+<br />
+
+`終端機下載react babel轉譯jsx`
 ```jsx
-// 終端機下載react babel轉譯jsx
 `npm install react --save`
 `npm install react-dom --save`
 
 `npm install @babel/preset-react --save-dev`
 ```
 
-```jsx
-`index.jsx`
+<br />
 
+`index.jsx`
+```jsx
 import React from 'react';
 import ReactDom from 'react-dom';
 
@@ -206,8 +215,10 @@ const Main = () => <h1>Hi JSX！</h1>;
 ReactDom.render(<Main />, document.getElementById('root'));
 ```
 
-```jsx
+<br />
+
 `webpack.config.js`
+```jsx
 // 原本的babel位置再加入對 jsx的編譯
 entry: './src/index.jsx',
 module: {
@@ -230,18 +241,21 @@ module: {
 
 
 ### day4 : SCSS in Webpack
+`終端機安裝`
 ```jsx
-// 終端機安裝
 `npm install style-loader css-loader sass-loader --save-dev`
 
 `npm install mini-css-extract-plugin --save-dev`
 ```
-```jsx
-`webpack.config.js`
 
+<br />
+
+`webpack.config.js`
+```jsx
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+// 可用SCSS取代
 // CSS loader
 module: {
   rules: [
@@ -295,20 +309,20 @@ module.exports = {
 };
 
 // 最後再import scss檔案到index.jsx即可進webpack
-`import styles from './index.scss';`
+import styles from './index.scss';
 ```
 
 ### day5 : Webpack-dev-server 熱刷新
+`終端機安裝`
 ```jsx
-// 終端機安裝
 `npm install webpack-dev-server --save-dev`
-
 ```
-```jsx
-`webpack.config.js`
 
+<br />
+
+`webpack.config.js`
+```jsx
 module.exports = {
-  /*其餘省略*/
  
   devServer: {
     static: {
@@ -320,10 +334,13 @@ module.exports = {
 
 //   The 'mode' option has not been set 報錯的兇手,需要加註這一行
   mode: 'development',
-};
+}
 ```
-```jsx
+
+<br />
+
 `package.json`
+```jsx
 // For webpack-cli 5.x:
 "start:dev": "webpack serve"
 
@@ -336,5 +353,4 @@ module.exports = {
 // 終端機執行
 `npm run start:dev`
 ```
-
 ## React 基礎
