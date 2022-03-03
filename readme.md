@@ -8,6 +8,8 @@ based on Clark(#ms314006)'s article & published book
 如果有跳過的天數代表是比較簡單的部分或是已經比較熟的部分 就不會特別 commit
 
 ## 環境設定
+相較於以前都是使用CRA製作React專案 此次則從0開始建構React專案的環境設定   
+除了可以了解每個設定在React裡面做了哪些事 還可以了解CRA專案裡為我們做了哪些環境設定   
 ### day0 : npm & git
 1. 安裝node環境 + git
 2. 終端機指令
@@ -355,3 +357,28 @@ module.exports = {
 `npm run start:dev`
 ```
 ## React 基礎
+
+### day10 : prop-types 替props加入型別
+加入型別可以預防props傳入時 型別錯誤導致畫面出現錯誤而無法顯示 有點類似TS
+
+1. 安裝prop-types
+`npm install --save prop-types`
+
+2. 設置props 型別
+```jsx
+// 導入
+import PropTypes from 'prop-types';
+
+// 設定props的型別 
+SayHello.propTypes = {
+
+  // props的名字: props的型別
+  names: PropTypes.arrayOf(PropTypes.string),
+}
+
+// 設定props的預設狀態 沒有傳入值時使用
+SayHello.defaultProps = {
+  names: 'Default string',
+}
+```
+`https://reactjs.org/docs/typechecking-with-proptypes.html#proptypes`
