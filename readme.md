@@ -382,3 +382,44 @@ SayHello.defaultProps = {
 }
 ```
 `https://reactjs.org/docs/typechecking-with-proptypes.html#proptypes`
+
+### day11 : useContext 簡化props傳遞問題
+props傳遞問題是 如果有多層props要傳遞 必須要每一層都加props 導致維護困難   
+useContext 解決了這個問題 只要在最上層包provider 每一層都可以直接使用props 不用再每一層都要加入props   
+
+```jsx
+// 1. 導入並建立 context
+import React, {
+  useState, createContext, useContext
+} from 'react';
+
+const TodoListContext = createContext();
+
+// 2. 包覆上層並加入要傳遞的value
+const Main = () => {
+  const [todoList] = useState(['first', 'second'])
+  return (
+
+    // Provider包覆 value為傳遞的值
+    <TodoListContext.Provider value={todoList}>
+
+      <div>
+        <span>{`代辦事項數: ${todoList.length}`}</span>
+        <TodoListPage />
+        <CurrentTask />
+      </div>
+    </TodoListContext.Provider>
+  )
+}
+
+// 3. 底層使用context傳的值
+const CurrentTask = () => {
+
+  // 使用context傳的值
+  const todoList = useContext(TodoListContext)
+
+  return <div>{`下一件事做: ${todoList[0]}`}</div>
+}
+```
+延伸閱讀: useContext vs Redux
+`https://medium.com/hannah-lin/react-hook-%E7%AD%86%E8%A8%98-usereducer-%E7%9C%9F%E7%9A%84%E8%83%BD%E5%AE%8C%E5%85%A8%E5%8F%96%E4%BB%A3-redux-%E5%97%8E-fabcc1e9b400`

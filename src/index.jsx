@@ -1,39 +1,62 @@
-import React from 'react'
+import React, { useState, createContext, useContext } from 'react'
 import ReactDom from 'react-dom'
 import PropTypes from 'prop-types'
-import styles from './index.scss'
 
-const SayHello = (props) => {
-  const { names } = props
-  const isEmpty = (value) => value === ''
+const TodoListContext = createContext()
 
-  return names.map((name) => (
-    <div
-      key={name}
-      className={
-        `${styles.mainBackground}
-         ${isEmpty(name) ? '' : styles.main}`
-      }
-      style={{
-        fontSize: 28,
-      }}
-    >
-      {`Hello ${isEmpty(name) ? 'world' : name}`}
-    </div>
-  ))
+const Task = (props) => {
+  const { task } = props
+  return <div>{task}</div>
 }
 
 // 定義props型別
-SayHello.propTypes = {
-  names: PropTypes.arrayOf(PropTypes.string),
+Task.propTypes = {
+  task: PropTypes.string,
 }
 
 // 定義props空值時的畫面
-SayHello.defaultProps = {
-  names: ['Default string'],
+Task.defaultProps = {
+  task: '',
+}
+
+const TodoList = () => {
+  const todoList = useContext(TodoListContext)
+  return todoList.map((task) => (
+    <ul key={task}>
+      <Task task={task} />
+    </ul>
+  ))
+}
+
+const TodoListPage = () => {
+  const todoList = useContext(TodoListContext)
+  return (
+    <div>
+      <div>其他內容</div>
+      <TodoList todoList={todoList} />
+    </div>
+  )
+}
+
+const CurrentTask = () => {
+  const todoList = useContext(TodoListContext)
+  return <div>{`下一件事做: ${todoList[0]}`}</div>
+}
+
+const Main = () => {
+  const [todoList] = useState(['first', 'second'])
+  return (
+    <TodoListContext.Provider value={todoList}>
+      <div>
+        <span>{`代辦事項數: ${todoList.length}`}</span>
+        <TodoListPage />
+        <CurrentTask />
+      </div>
+    </TodoListContext.Provider>
+  )
 }
 
 ReactDom.render(
-  <SayHello names={[1, 2, 3]} />,
+  <Main />,
   document.getElementById('root'),
 )
