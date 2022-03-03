@@ -421,5 +421,5 @@ const CurrentTask = () => {
   return <div>{`下一件事做: ${todoList[0]}`}</div>
 }
 ```
-延伸閱讀: useContext vs Redux
+延伸閱讀: useContext vs Redux   
 `https://medium.com/hannah-lin/react-hook-%E7%AD%86%E8%A8%98-usereducer-%E7%9C%9F%E7%9A%84%E8%83%BD%E5%AE%8C%E5%85%A8%E5%8F%96%E4%BB%A3-redux-%E5%97%8E-fabcc1e9b400`
