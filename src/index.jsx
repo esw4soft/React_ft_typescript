@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ReactDom from 'react-dom'
 import PropTypes from 'prop-types'
-import { Provider, useSelector } from 'react-redux'
+import { Provider, useSelector, useDispatch } from 'react-redux'
 import store from './store'
+import { addTodo } from './action/todolist'
 
 const Task = (props) => {
   const { task } = props
@@ -44,10 +45,16 @@ const CurrentTask = () => {
 }
 
 const Main = () => {
+  const dispatch = useDispatch()
   const todoList = useSelector((state) => state.todoList)
+  const [newTodo, setNewTodo] = useState('123')
   return (
     <div>
       <span>{`代辦事項數: ${todoList.length}`}</span>
+      <div>
+        <input value={newTodo} onChange={(e) => { setNewTodo(e.target.value) }} />
+        <button type="button" onClick={() => { dispatch(addTodo(newTodo)) }}>新增事項</button>
+      </div>
       <TodoListPage />
       <CurrentTask />
     </div>
