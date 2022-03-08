@@ -423,3 +423,13 @@ const CurrentTask = () => {
 ```
 延伸閱讀: useContext + useReducer vs Redux   
 `https://medium.com/hannah-lin/react-hook-%E7%AD%86%E8%A8%98-usereducer-%E7%9C%9F%E7%9A%84%E8%83%BD%E5%AE%8C%E5%85%A8%E5%8F%96%E4%BB%A3-redux-%E5%97%8E-fabcc1e9b400`
+
+### day12 : Redux
+1. 安裝 Redux
+`npm install --save redux react-redux`
+
+Reducer : 控制器controler : 用來保管 state，以及在接收到不同的 action 指令時該對 state 做什麼動作的函數   
+Store : 儲存槽 : 整合所有的 Reducer   
+Provider : 安裝儲存槽 : 接收上方創建的 Store   
+useSelector : 獲取 store 中的資料的行為   
+
