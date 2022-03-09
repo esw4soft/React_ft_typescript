@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, createContext, useContext } from 'react'
 import ReactDom from 'react-dom'
 import PropTypes from 'prop-types'
-import { Provider, useSelector, useDispatch } from 'react-redux'
-import store from './store'
-import { addTodo } from './action/todolist'
+
+const TodoListContext = createContext()
 
 const Task = (props) => {
   const { task } = props
@@ -21,9 +20,7 @@ Task.defaultProps = {
 }
 
 const TodoList = () => {
-  // const todoList = useContext(TodoListContext)
-  const todoList = useSelector((state) => state.todoList)
-
+  const todoList = useContext(TodoListContext)
   return todoList.map((task) => (
     <ul key={task}>
       <Task task={task} />
@@ -31,39 +28,35 @@ const TodoList = () => {
   ))
 }
 
-const TodoListPage = () => (
-  <div>
-    <div>其他內容</div>
-    <TodoList />
-  </div>
-)
-
-const CurrentTask = () => {
-  // const todoList = useContext(TodoListContext)
-  const todoList = useSelector((state) => state.todoList)
-  return <div>{`下一件事做: ${todoList[0]}`}</div>
-}
-
-const Main = () => {
-  const dispatch = useDispatch()
-  const todoList = useSelector((state) => state.todoList)
-  const [newTodo, setNewTodo] = useState('123')
+const TodoListPage = () => {
+  const todoList = useContext(TodoListContext)
   return (
     <div>
-      <span>{`代辦事項數: ${todoList.length}`}</span>
-      <div>
-        <input value={newTodo} onChange={(e) => { setNewTodo(e.target.value) }} />
-        <button type="button" onClick={() => { dispatch(addTodo(newTodo)) }}>新增事項</button>
-      </div>
-      <TodoListPage />
-      <CurrentTask />
+      <div>其他內容</div>
+      <TodoList todoList={todoList} />
     </div>
   )
 }
 
+const CurrentTask = () => {
+  const todoList = useContext(TodoListContext)
+  return <div>{`下一件事做: ${todoList[0]}`}</div>
+}
+
+const Main = () => {
+  const [todoList] = useState(['first', 'second'])
+  return (
+    <TodoListContext.Provider value={todoList}>
+      <div>
+        <span>{`代辦事項數: ${todoList.length}`}</span>
+        <TodoListPage />
+        <CurrentTask />
+      </div>
+    </TodoListContext.Provider>
+  )
+}
+
 ReactDom.render(
-  <Provider store={store}>
-    <Main />
-  </Provider>,
+  <Main />,
   document.getElementById('root'),
 )
