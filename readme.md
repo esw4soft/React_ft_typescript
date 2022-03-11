@@ -436,5 +436,27 @@ Action: 根據行為指令傳給Reducer 做接下來的動作
 Dispatch,useDispatch : 因為資料現在是 redux 所管理, 所以必須使用Dispatch傳入action才能改變store裡的資料   
 Middleware : Middleware 會在 Store 和 Reducer 之間，所有透過 Dispatch 的執行都會經過 Middleware  
 常用Middleware:
-1. Logger : 紀錄使用Dispatch後store資料的變化
-2. Redux-Thunk, Redux-Saga : 解決非同步資料問題
+1. Logger : 紀錄使用Dispatch後store資料的變化  
+2. Redux-Thunk, Redux-Saga : 解決非同步資料問題  
+
+--------------------------------------------------------------------------    
+### 因為網頁版的程式碼有點凌亂且講解部分比較少 所以後面改成以書本程式碼為主
+### Route
+#### 3-2-1 BrowserRouter vs HashRouter 
+BrowserRouter會經過server 而HashRouter不會經過server   
+
+#### 3-2-2 Router鐵三角 : Switch Route Link (v6版本後寫法有改變)
+`https://ithelp.ithome.com.tw/articles/10282773?sc=iThomeR`   
+```jsx
+  // 類似主頁目錄
+  <HashRouter>
+    <Switch>
+      <Route path="/home" component={Home} />
+      <Route exact path="/about" component={About} />
+    </Switch>
+  </HashRouter>
+
+  // 連結要到哪個頁面
+  <Link to="/about">關於我們</Link>
+
+```
