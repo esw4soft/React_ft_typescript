@@ -459,4 +459,17 @@ BrowserRouter會經過server 而HashRouter不會經過server
   // 連結要到哪個頁面
   <Link to="/about">關於我們</Link>
 
+  // match可以傳遞參數給元件
+  // 設定傳遞參數：id
+  <Route path="/news/newsReader/:id" component={(props) => <NewsReader news={news} match={props.match} />} />
+
+  // 取出參數坐後面的資料處理
+  const targetid = props.match.params.id
+  
+  // 可以使用useHistory 進行點擊連結以外的跳轉
+  // 可以使用useParams取代match取得網址參數
+
+
+
+
 ```
