@@ -3,7 +3,6 @@ import Menu from '../../components/Menu/Menu.jsx'
 
 const Home = () => (
   <div>
-    <Menu />
     <h1>這裡是首頁</h1>
   </div>
 )

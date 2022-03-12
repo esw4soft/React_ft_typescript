@@ -51,5 +51,8 @@ module.exports = {
         tsx: 'always',
       },
     ],
+
+    // return 裡面jsx不要再塞component 裏面要放韓式裡面再塞component
+    'react/no-unstable-nested-components': ['warn'],
   },
 }
