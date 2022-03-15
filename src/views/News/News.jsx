@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Switch, Route } from 'react-router-dom'
+import NewsForm from './NewsForm.jsx'
 import NewList from './NewsList.jsx'
 import NewsReader from './NewsReader.jsx'
 
@@ -28,7 +29,8 @@ const News = () => {
         component={() => (
           <>
             <h1>這裡是最新消息</h1>
-            <NewList news={news} />
+            <NewsForm />
+            <NewList />
           </>
         )}
       />

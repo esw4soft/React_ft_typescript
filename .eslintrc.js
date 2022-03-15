@@ -54,5 +54,10 @@ module.exports = {
 
     // return 裡面jsx不要再塞component 裏面要放韓式裡面再塞component
     'react/no-unstable-nested-components': ['warn'],
+
+    // Default parameters should be last.
+    // 害我redux卡了一陣子的元凶
+    // reducer傳入參數不可調換位置 因為有運作的順序
+    'default-param-last': 'off',
   },
 }

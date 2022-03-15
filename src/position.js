@@ -1,3 +1,3 @@
-const position = 'Front End Development';
- 
-export default position;
+const position = 'Front End Development'
+
+export default position

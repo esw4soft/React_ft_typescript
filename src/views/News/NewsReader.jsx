@@ -1,4 +1,10 @@
 import React from 'react'
+import { connect } from 'react-redux'
+
+const mapStateToProps = (state) => ({
+  news: state.news.news,
+  user: state.user.name,
+})
 
 const NewsReader = (props) => {
   const asd = props
@@ -18,4 +24,4 @@ const NewsReader = (props) => {
   )
 }
 
-export default NewsReader
+export default connect(mapStateToProps)(NewsReader)
