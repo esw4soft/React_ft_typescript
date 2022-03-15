@@ -59,5 +59,7 @@ module.exports = {
     // 害我redux卡了一陣子的元凶
     // reducer傳入參數不可調換位置 因為有運作的順序
     'default-param-last': 'off',
+
+    'import/prefer-default-export': 'off',
   },
 }
