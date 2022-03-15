@@ -468,8 +468,22 @@ BrowserRouter會經過server 而HashRouter不會經過server
   
   // 可以使用useHistory 進行點擊連結以外的跳轉
   // 可以使用useParams取代match取得網址參數
-
-
-
-
 ```
+
+### Redux
+1. 建立store
+2. 建立Reducer 設定initialState預設資料
+3. Reducer加入store(也可以連接多個Reducer)
+4. Provider包覆 store加入Provider
+#### 取得資料 :
+5. mapStateToprops 把元件和store裡面的資料做連結
+6. 使用connect 把元件和store做連接
+#### 事件觸發改變資料 :
+7. 使用dispatch改變store資料
+8. reducer根據收到dispatch傳入的參數做什麼事(action, 改變的資料)
+9. 可以把dispatch寫入mapDispatchToProps 就不必在元件中呼叫dispatch
+10. 要取得資料用connect連接mapStateToprops 要觸發事件連接mapDispatchToProps
+```jsx
+connect(mapStateToprops, mapDispatchToProps)("元件名稱")
+```
+11. 設置action creator 統一保管action方法
