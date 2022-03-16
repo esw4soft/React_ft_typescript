@@ -498,3 +498,17 @@ const dispatch = useDispatch()
 
 #### Middleware 中介軟體
 Middleware 是在dispatch觸發後 到reducer的中間層
+```jsx
+// 中介軟體格式
+const logger = (store) => (next) => (action) => {
+  console.log('此次執行: ', action)
+  console.log('執行之前的state: ', store.getState())
+
+  // dispatch還沒到reducer前
+  const result = next(action)  //dispatch進去了
+  // dispatch做完了後
+  console.log('執行之後的state: ', store.getState())
+  return result
+}
+```
+可以使用 `npm i --save redux-logger` 方便查看redux裡面的資料變化
