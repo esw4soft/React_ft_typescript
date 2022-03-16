@@ -1,15 +1,16 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 
-const mapStateToProps = (state) => ({
-  news: state.news.news,
-  user: state.user.name,
-})
+// const mapStateToProps = (state) => ({
+//   news: state.news.news,
+//   user: state.user.name,
+// })
 
 const NewsReader = (props) => {
   const asd = props
   const targetid = asd.match.params.id
-  const targetnews = asd.news.find((theNews) => (
+  const news = useSelector((state) => state.news.news)
+  const targetnews = news.find((theNews) => (
     String(theNews.id) === String(targetid)
   ))
 
@@ -24,4 +25,5 @@ const NewsReader = (props) => {
   )
 }
 
-export default connect(mapStateToProps)(NewsReader)
+// export default connect(mapStateToProps)(NewsReader)
+export default NewsReader
