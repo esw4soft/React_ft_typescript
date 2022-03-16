@@ -27,7 +27,7 @@ const NewList = () => {
             </Link>
             <button
               type="button"
-              onClick={() => { useDispatch(deleteNews(theNews.id)) }}
+              onClick={() => { dispatch(deleteNews(theNews.id)) }}
             >
               刪除
             </button>
