@@ -1,24 +1,24 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { deleteNews } from '../../actions/news'
 
-const mapStateToProps = (state) => ({
-  news: state.news.news,
-})
+// const mapStateToProps = (state) => ({
+//   news: state.news.news,
+// })
 
-const mapDispatchToProps = (dispatch) => ({
-  deleteNews: (id) => {
-    dispatch(deleteNews(id))
-  },
-})
+// const mapDispatchToProps = (dispatch) => ({
+//   deleteNews: (id) => {
+//     dispatch(deleteNews(id))
+//   },
+// })
 
-const NewList = (props) => {
-  const pppp = props
+const NewList = () => {
+  const dispatch = useDispatch()
   return (
     <ul>
       {
-        pppp.news.map((theNews) => (
+        useSelector((state) => state.news.news).map((theNews) => (
           <li key={theNews.id}>
             <Link
               to={`/news/newsReader/${theNews.id}`}
@@ -27,7 +27,7 @@ const NewList = (props) => {
             </Link>
             <button
               type="button"
-              onClick={() => { props.deleteNews(theNews.id) }}
+              onClick={() => { useDispatch(deleteNews(theNews.id)) }}
             >
               刪除
             </button>
@@ -38,4 +38,4 @@ const NewList = (props) => {
   )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewList)
+export default NewList
