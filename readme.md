@@ -487,3 +487,12 @@ BrowserRouter會經過server 而HashRouter不會經過server
 connect(mapStateToprops, mapDispatchToProps)("元件名稱")
 ```
 11. 設置action creator 統一保管action方法
+#### useSelector, useDispatch
+使用useSelector 來取代 mapStateToprops   
+使用useDispatch 來取代 mapDispatchToProps   
+注意: 因為useDispatch是在函式第二層 所以要先在第一層宣告完再給第二層使用   
+```jsx
+const dispatch = useDispatch()
+```
+`https://zh-hant.reactjs.org/warnings/invalid-hook-call-warning.html`
+
