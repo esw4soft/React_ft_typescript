@@ -496,3 +496,5 @@ const dispatch = useDispatch()
 ```
 `https://zh-hant.reactjs.org/warnings/invalid-hook-call-warning.html`
 
+#### Middleware 中介軟體
+Middleware 是在dispatch觸發後 到reducer的中間層
