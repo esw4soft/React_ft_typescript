@@ -515,4 +515,9 @@ const logger = (store) => (next) => (action) => {
 
 #### Redux Thuck 處理非同步事件
 因為Redux的store只接受同步函式 所以要使做非同步事件需要加入可以處理非同步事件的Middleware(Redux Thunk, Redux Saga) 
-`npm i --save redux-thunk`  
+`npm i --save redux-thunk`
+
+需要安裝async,await的babel編譯包  
+`npm i --save core-js regenerator-runtime`
+
+當dispatch>>action 是回傳一個函式時 裡面如果有非同步事件 redux-thunk會抓到他 會等裡面函式做完後 函式裡面的dispatch會去做action>reducer  
