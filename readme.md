@@ -512,3 +512,7 @@ const logger = (store) => (next) => (action) => {
 }
 ```
 可以使用 `npm i --save redux-logger` 方便查看redux裡面的資料變化
+
+#### Redux Thuck 處理非同步事件
+因為Redux的store只接受同步函式 所以要使做非同步事件需要加入可以處理非同步事件的Middleware(Redux Thunk, Redux Saga) 
+`npm i --save redux-thunk`  
