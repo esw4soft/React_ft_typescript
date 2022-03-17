@@ -8,6 +8,8 @@ import NotFound from './views/NotFound/NotFound.jsx'
 import Menu from './components/Menu/Menu.jsx'
 import News from './views/News/News.jsx'
 import store from './store'
+import 'regenerator-runtime/runtime'
+import 'core-js/stable'
 
 ReactDOM.render(
   <Provider store={store}>
