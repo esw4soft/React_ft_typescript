@@ -521,3 +521,6 @@ const logger = (store) => (next) => (action) => {
 `npm i --save core-js regenerator-runtime`
 
 當dispatch>>action 是回傳一個函式時 裡面如果有非同步事件 redux-thunk會抓到他 會等裡面函式做完後 函式裡面的dispatch會去做action>reducer  
+
+### Unit Test
+`npm install --save-dev jest`
