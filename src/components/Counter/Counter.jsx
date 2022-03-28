@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import useCounter from '../../hooks/useCounter'
+import styles from './index.scss'
 
 const Counter = () => {
   const [count, setCount] = useState(0)
   return (
     <div>
-      <div>
+      <div className={styles.count}>
         目前數字:
         {count}
       </div>
