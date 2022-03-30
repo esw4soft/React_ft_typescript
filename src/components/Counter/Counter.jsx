@@ -1,19 +1,23 @@
-import React from 'react';
-import useCounter from '../../hooks/useCounter';
+import React, { useState } from 'react'
+import useCounter from '../../hooks/useCounter'
+import styles from './index.scss'
 
 const Counter = () => {
-  const { count, add } = useCounter(
-    1, () => { console.log('一般的計數器執行'); }
-  );
- 
+  const [count, setCount] = useState(0)
   return (
     <div>
-      <div>目前的數字：{count}</div>
-      <button onClick={() => { add(1); }}>
+      <div className={styles.count}>
+        目前數字:
+        {count}
+      </div>
+      <button
+        type="button"
+        onClick={() => { setCount(count + 1) }}
+      >
         點我加一
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default Counter;
+export default Counter

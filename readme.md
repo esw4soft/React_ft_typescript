@@ -523,4 +523,101 @@ const logger = (store) => (next) => (action) => {
 當dispatch>>action 是回傳一個函式時 裡面如果有非同步事件 redux-thunk會抓到他 會等裡面函式做完後 函式裡面的dispatch會去做action>reducer  
 
 ### Unit Test
-`npm install --save-dev jest`
+`npm install --save-dev jest`   
+
+#### 範例: 遵守3A原則   
+```jsx
+// math.js
+export const addTwoNumbers = (a, b) => a + b
+
+
+// math.test.js
+import { addTwoNumbers } from './math'
+
+test('the result of addTwoNumbers will be 5 if use 3 and 2', () => {
+    const expected = 5 //arrange
+
+    const result = addTwoNumbers(3, 2)  //act
+
+    expect(result).toBe(expected) //assert
+})
+```
+
+測試也要做語法轉換, 所以要加入babel:  
+```js
+// babel.config.json
+module.exports = {
+  presets: [['@babel/preset-env', { targets: { node: 'current' } }]],
+}
+```
+
+查看那些測試案例被執行:   
+`npm run test -- --verbose`   
+
+測試覆蓋報告   
+`npm run test -- --coverage`   
+
+#### 使用Mock取代真實環境
+使用API抓取資料時可能會受到真實環境影響而沒有得到資料, 這時可以使用mock來取代使其不受到真實環境影響, 正常取得資料來進行測試   
+其他有邏輯的地方則不推薦使用mock來取代, 如果真的要使用mock來測試, 使用完後還是要替換回真實依賴環境再測一次  
+
+#### 導入@testing-library/react測試元件
+@testing-library/react可以用來測試操作畫面, 像典籍按鈕 ,抓取畫面文字等等  
+`npm install --save-dev @testing-library/react`  
+`npm install --save-dev @testing-library/jest-dom`  
+
+`babel.config.js`加入:  
+```js
+module.exports = {
+  presets: [['@babel/preset-react'], ['@babel/preset-env', { targets: { node: 'current' } }]],
+}
+```
+
+`package.json`加入:  
+```json
+  "jest":{
+    "testEnvironment": "jsdom"
+  }
+```
+#### 測試Redux
+必須模擬redux的運作 所以先匯入需要的元件   
+```jsx
+// babel擴充語法
+import 'regenerator-runtime/runtime'
+import 'core-js/stable'
+
+// react, redux
+import React from 'react'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
+
+// testing 
+import { render, waitFor } from '@testing-library/react'  // test炫染元件
+import { toBeInTheDocument } from '@testing-library/jest-dom/matchers' //test驗證元素存在
+
+// reducer
+import user from '../../reducers/user.js'
+
+// 被測試對象
+import Home from './Home.jsx'
+import { TestWatcher } from 'jest'
+```
+然後建立store 再加入測試(要注意是否有非同步操作 如果有要用waitFor)  
+
+#### 測試Router
+加入MemoryRouter來測試router   
+```jsx
+import React from 'react';
+import { createStore, combineReducers } from 'redux'
+import { Provider } from 'react-redux'
+import { MemoryRouter } from 'react-router-dom'
+import { render, fireEvent, getAllByText, queryByText} from '@testing-library/react'
+import { toBeInTheDocument, toHaveTextContent } from '@testing-library/jest-dom/matchers'
+import news from '../../reducers/news.js'
+import News from './News.jsx'
+```
+測試模擬點擊後顯示的內容   
+如果要找畫面不存在的元件要使用queryByText , 如果使用getBy會報錯誤   
+
+
