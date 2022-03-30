@@ -606,6 +606,18 @@ import { TestWatcher } from 'jest'
 然後建立store 再加入測試(要注意是否有非同步操作 如果有要用waitFor)  
 
 #### 測試Router
-
+加入MemoryRouter來測試router   
+```jsx
+import React from 'react';
+import { createStore, combineReducers } from 'redux'
+import { Provider } from 'react-redux'
+import { MemoryRouter } from 'react-router-dom'
+import { render, fireEvent, getAllByText, queryByText} from '@testing-library/react'
+import { toBeInTheDocument, toHaveTextContent } from '@testing-library/jest-dom/matchers'
+import news from '../../reducers/news.js'
+import News from './News.jsx'
+```
+測試模擬點擊後顯示的內容   
+如果要找畫面不存在的元件要使用queryByText , 如果使用getBy會報錯誤   
 
 

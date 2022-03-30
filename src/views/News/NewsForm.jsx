@@ -10,11 +10,13 @@ const NewsForm = (props) => {
     <div>
       名稱:
       <input
+        placeholder="請輸入名稱"
         value={name}
         onChange={(e) => { setName(e.target.value) }}
       />
       敘述:
       <input
+        placeholder="請輸入敘述"
         value={describe}
         onChange={(e) => { setDescribe(e.target.value) }}
       />
