@@ -579,7 +579,33 @@ module.exports = {
     "testEnvironment": "jsdom"
   }
 ```
+#### 測試Redux
+必須模擬redux的運作 所以先匯入需要的元件   
+```jsx
+// babel擴充語法
+import 'regenerator-runtime/runtime'
+import 'core-js/stable'
 
+// react, redux
+import React from 'react'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
+
+// testing 
+import { render, waitFor } from '@testing-library/react'  // test炫染元件
+import { toBeInTheDocument } from '@testing-library/jest-dom/matchers' //test驗證元素存在
+
+// reducer
+import user from '../../reducers/user.js'
+
+// 被測試對象
+import Home from './Home.jsx'
+import { TestWatcher } from 'jest'
+```
+然後建立store 再加入測試(要注意是否有非同步操作 如果有要用waitFor)  
+
+#### 測試Router
 
 
 

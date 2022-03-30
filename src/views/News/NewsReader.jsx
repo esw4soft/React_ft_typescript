@@ -17,7 +17,7 @@ const NewsReader = (props) => {
   return (
     <div>
       <h1>
-        你咒在閱讀
+        您正在閱讀
         { targetnews.name }
       </h1>
       <p>{targetnews.describe}</p>

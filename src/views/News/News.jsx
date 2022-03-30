@@ -16,7 +16,7 @@ const newsreader = (props, news) => (
 )
 const News = () => {
   const [news] = useState([
-    { id: 1, name: '弟一吧以茲料', describe: '這裡是第一筆哦' },
+    { id: 1, name: '第一筆最新消息', describe: '這裡是第一筆哦' },
     { id: 2, name: '弟2吧以茲料', describe: '這裡是第2筆哦' },
     { id: 3, name: '弟3吧以茲料', describe: '這裡是第3筆哦' },
   ])
