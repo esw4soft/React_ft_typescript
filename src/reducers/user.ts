@@ -1,9 +1,14 @@
-const initState = {
+interface UserState {
+  name: string,
+  user: any,
+}
+
+const initState: UserState = {
   name: 'eason',
   user: { first: 'asd' },
 }
 
-const user = (state = initState, action) => {
+const user = (state = initState, action): UserState => {
   switch (action.type) {
     case 'SET_USER':
       return {

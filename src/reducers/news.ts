@@ -1,4 +1,16 @@
-const initState = {
+import { NewsActionTypes, AddNews, DeleteNews } from "../actions/news"
+
+export interface News {
+  id: number,
+  name: string,
+  describe: string,
+}
+
+export interface NewsState {
+  news: News[]
+}
+
+const initState: NewsState = {
   news:
       [
         { id: 1, name: '第一筆最新消息', describe: '這裡是第一筆哦' },
@@ -6,21 +18,21 @@ const initState = {
         { id: 3, name: '弟3吧以茲料', describe: '這裡是第3筆哦' },
       ],
 }
-const news = (state = initState, action) => {
+const news = (state = initState, action: NewsActionTypes): NewsState => {
   switch (action.type) {
     case 'ADD_NEWS':
       return {
         ...state,
         news: [
           ...state.news,
-          action.payload.news,
+          (<AddNews>action).payload.news,
         ],
       }
     case 'DELETE_NEWS':
       return {
         ...state,
         news: state.news.filter(
-          (theNews) => theNews.id !== action.payload.id,
+          (theNews: News) => theNews.id !== (<DeleteNews>action).payload.id,
         ),
       }
     default:
