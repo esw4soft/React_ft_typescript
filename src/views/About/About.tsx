@@ -1,5 +1,4 @@
 import React from 'react'
-import Menu from '../../components/Menu/Menu.jsx'
 
 const About = () => (
   <div>
