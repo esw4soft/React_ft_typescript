@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import useCounter from '../../hooks/useCounter'
 import styles from './index.scss'
 
 const Counter = () => {
