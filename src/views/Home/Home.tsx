@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchUser } from '../../actions/user'
 import { RootState } from '../../store'
+import Button from '../../components/Button'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -14,6 +15,7 @@ const Home = () => {
       <div>
         {JSON.stringify(useSelector((state: RootState) => state.user.user))}
       </div>
+      <Button size="small"/>
     </>
   )
 }
