@@ -621,3 +621,41 @@ import News from './News.jsx'
 如果要找畫面不存在的元件要使用queryByText , 如果使用getBy會報錯誤   
 
 
+### TypeScript
+#### 基本型別註記
+```tsx
+// 基本型別 string number boolean null undefined
+const name: string = "foo"
+
+// 聯集型別
+let name: string | undefined = something
+
+// 陣列
+const names: string[] = ['namea', 'nameb']
+
+// 物件 >> 不要使用 物件要使用interface
+let obj: object = {} //因為陣列和韓式也都算物件 所以沒辦法確定 需使用interface
+
+interface User {
+  name: string
+  age: number
+}
+
+// 介面可以搭配陣列使用 使用上式的User
+const users: User[] = []
+
+// 函式： 可使用 函式註記 引數註記
+// 函式註記：沒有回傳值使用void
+const Say = (): void => {
+  console.log('something)
+}
+
+// 函式註記 ＋ 引數註記：
+const Say = (something: string): void => {
+  console.log('something)
+}
+
+
+
+
+```
