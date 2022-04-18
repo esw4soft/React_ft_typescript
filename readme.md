@@ -654,8 +654,20 @@ const Say = (): void => {
 const Say = (something: string): void => {
   console.log('something)
 }
-
-
-
-
 ```
+#### Typescript in React
+`npm install --save-dev typescript`
+`npx tsc --init`
+#### 第三方套件 Typescript
+`npm install --save-dev @types/react-dom @types/react-router-dom @types/react-redux`
+#### 建立tsconfig.json
+把jsx: preserve 註解拿掉
+#### webpack babel Typescript
+`npm install --save-dev @babel/preset-typescript`
+#### scss Typescript
+`npm install --save-dev typed-scss-modules`
+#### 執行
+`npm run tsm` or   
+在package.json script加入`"tsm": "tsm src --watch"`
+
+
