@@ -23,6 +23,14 @@ const filterDisplayTodos = (filterDoneTodo: boolean, todos: Todo[]) => {
 
 const todos = (state = initialState, action: TodoActionTypes): TodoState => {
   switch (action.type) {
+    case 'ADD_TODO':
+      return {
+        ...state,
+        todos: [...state.todos, action.payload],
+        displayTodos: filterDisplayTodos(
+          state.filterDoneTodo, [...state.todos, action.payload]
+        )
+      }
     default:
       return state
   }
