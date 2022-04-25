@@ -29,12 +29,22 @@ interface SwitchFilterDoneTodo {
   type: 'SWITCH_FILTER_DONE_TODO',
 }
 
+interface GetTodoById {
+  type: 'GET_TODO_BY_ID',
+  payload: number,
+}
+
+export const getTodoById = (id :number): GetTodoById => ({
+  type: 'GET_TODO_BY_ID',
+  payload: id,
+})
+
 export const addTodo = (todo: Todo): AddTodo => ({
   type: 'ADD_TODO',
   payload: todo,
 })
 
-export const DeleteTodo = (id: number): DeleteAdd => ({
+export const deleteTodo = (id: number): DeleteAdd => ({
   type: 'DELETE_TODO',
   payload: id,
 })
@@ -48,4 +58,4 @@ export const switchFilterDoneTodo = (): SwitchFilterDoneTodo => ({
   type: 'SWITCH_FILTER_DONE_TODO',
 })
 
-export type TodoActionTypes = AddTodo | DeleteAdd | SwitchTodoDoneStatus | SwitchFilterDoneTodo
+export type TodoActionTypes = AddTodo | DeleteAdd | SwitchTodoDoneStatus | SwitchFilterDoneTodo | GetTodoById
