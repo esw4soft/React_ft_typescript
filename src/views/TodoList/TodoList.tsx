@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { addTodo, deleteTodo, switchTodoDoneStatus, switchFilterDoneTodo } from '../../actions/todo'
+import { rootState } from '../../store'
 import styles from './index.scss'
 import Filter from './Filter'
 import useTodoList from '../../hooks/useTodoList'
@@ -6,7 +9,8 @@ import TodoItem from './TodoItem'
 import Form from './Form'
 
 const TodoList = () => {
-    const todoList = useTodoList()
+    // const todoList = useTodoList()
+    const dispatch = useDispatch()
     return (
         <div className={ styles.layout }>
             <div className={ styles.todoListWrapper }>
@@ -20,24 +24,24 @@ const TodoList = () => {
                 </div>
 
                 <Filter
-                    filterDoneTodo={ todoList.filterDoneTodo }
-                    switchFilterDoneTodo={ todoList.switchFilterDoneTodo }
+                    filterDoneTodo={ useSelector((state: rootState) => state.filterDoneTodo) }
+                    switchFilterDoneTodo={ () => dispatch(switchFilterDoneTodo()) }
                 />
 
                 <div className={ styles.todoList }>
                     {
-                        todoList.todos.map(todo => (
+                        useSelector((state: rootState) => state.displayTodos).map(todo => (
                             <TodoItem
                                 key={ todo.id }
                                 todo={ todo }
-                                switchTodoDoneStatus={ todoList.SwitchTodoDoneStatus }
-                                deleteTodo={ todoList.deleteTodo }
+                                switchTodoDoneStatus={ (id) => dispatch(switchTodoDoneStatus(id)) }
+                                deleteTodo={ (id) => dispatch(deleteTodo(id)) }
                             />
                         ))
                     }
                 </div>
 
-                <Form addTodo={todoList.addTodo}/>
+                <Form addTodo={(todo) => dispatch(addTodo(todo))}/>
             </div>
 
 
