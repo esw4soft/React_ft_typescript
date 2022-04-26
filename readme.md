@@ -654,6 +654,43 @@ const Say = (): void => {
 const Say = (something: string): void => {
   console.log('something)
 }
+
+```
+
+#### 定義指定的型別結構(type)
+```tsx
+// 定義指定的型別結構 type
+export type NewsActionTypes = addNews | DeleteNews
+// 同時擁有兩個介面 >> 但是action不確定是AddNews還是 DeleteNews
+// 所以要使用型別斷言(Type assertion)
+```
+#### 改變原本已經有的型別 (typeof)
+```tsx
+type Conference = typeof conference;
+```
+#### 型別斷言(Type assertion): 直接宣告是哪個型別
+```tsx
+// 基本用法 變數前以<>指定該變數的型別
+`(<AddNews>action).payload.news`
+
+// 常數斷言 as const , <const> 可使每個值都是readonly 防止被修改功能被破壞
+// (組件內) 因為在元件內寫<> 會被讀成jsx
+const difficulties = ['easy', 'normal', 'hard'] as const
+
+// 或是
+const difficulties = <const>['easy', 'normal', 'hard']
+
+```
+#### react預設型別 : 泛型註記(React.FC) : 直接幫元件註記型別 不推
+```tsx
+type ButtonBProps = {
+  title: string
+}
+
+// 尖括號就是泛型
+const ButtonB: React.FunctionComponent<ButtonBProps> = (props) => (
+  <button type="button">{ props.children }</button>
+)
 ```
 #### Typescript in React
 `npm install --save-dev typescript`
@@ -669,5 +706,33 @@ const Say = (something: string): void => {
 #### 執行
 `npm run tsm` or   
 在package.json script加入`"tsm": "tsm src --watch"`
+
+### Todolist + TypeScript
+#### 自訂義hook
+處理資料的最大重點是要設定全新的資料 而不是用push塞進原有todolist裡 
+例:
+```tsx
+// 新資料避免call by refrence
+const newTodos = [...todos]
+
+newTodos[targetTodoIndex] = {
+
+  // 新資料
+  ...newTodos[targetTodoIndex],
+
+  // 改變那筆資料的完成狀態
+  done: !newTodos[targetTodoIndex].done,
+}
+
+// hook型別註記 (類似泛型)
+const [count, setCount] = useState<number>(0)
+const [count, setCount] = useState<number | null>(0)
+```
+#### Redux
+```tsx
+// 取得所有reducer的型別 ReturnType<>
+const rootReducer = combineReducers({ news, user})
+export type RootState = ReturnType<typeof rootReducer>
+```
 
 
